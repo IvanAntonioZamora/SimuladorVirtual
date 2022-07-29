@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./assets/undraw_Join_re_w1lh.png">
+    <title>Solicitud de Servicio</title>
+    <script defer src="./js/variables.js"></script>
+    <script defer src="./js/bases.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script> 
+    <script defer src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> 
+    <script defer src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script defer src="./js/app.js"></script>
+</head>
+<body>
+    <div>
+        <header class="container border-bottom border-top">
+            <div class="row">
+                <div class="col-12 col-md-3 mt-3 d-flex align-items-center justify-content-center">
+                    <a href="./index.html" class="text-dark text-decoration-none">
+                        <img class="me-3" src="./assets/undraw_Join_re_w1lh.png" alt="Logo" width="70" height="62">
+                        <span class="fs-4-3">Simulador</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-9 small mt-3 d-flex align-items-center justify-content-center">
+                    <p class="text-center">
+                        Administrador de Servicios para las areas de un Edificio
+                    </p>
+                </div>
+            </div>
+        </header>
+        <main class="container d-flex align-items-center justify-content-center mt-5">
+            <div class="col-12 d-flex align-items-start flex-wrap flex-md-nowrap">
+                <div class="nav flex-md-column nav-pills me-3 mb-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active" id="v-pills-solicitud-tab" data-bs-toggle="pill" data-bs-target="#v-pills-solicitud" type="button" role="tab" aria-controls="v-pills-solicitud" aria-selected="true">Solicitud</button>
+                    <button class="nav-link" id="v-pills-administrar-tab" data-bs-toggle="pill" data-bs-target="#v-pills-administrar" type="button" role="tab" aria-controls="v-pills-administrar" aria-selected="false">Administrar</button>
+                </div>
+                <div class="tab-content w-100" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-solicitud" role="tabpanel" aria-labelledby="v-pills-solicitud-tab" tabindex="0">
+                        <div class="container d-flex align-items-center justify-content-center">
+                            <div class="row col-11 shadow p-3 mb-5 bg-body rounded">
+                                <div class="col-12 text-center mt-4 mb-1">
+                                    <h1 class="h4 text-primary">SOLICITUD DE SERVICIO</h1>
+                                </div>
+                                <div class="col-12 border border-1 rounded-2 p-3 mb-3 mt-3 bg-light">
+                                    <form id="Solicitud" class="d-flex flex-wrap align-items-center">
+                                        <div class="col-12 col-md-6 d-flex flex-wrap">
+                                            <div class="col-12 text-star mb-3">
+                                                <p class="lead">Seleccione el área e ingrese la descripción.</p>
+                                            </div>
+                                            <div class="col-12 col-md-6 text-star mb-4" id="Fecha"></div>
+                                            <div class="col-12 col-md-6 text-star text-md-center mb-4" id="Folio"></div>
+                                            <div class="col-12 text-star mb-3" id="Area">
+                                                <div class="d-flex flex-wrap">
+                                                    <div class="col-12 mb-1"><strong>Área solicitante: </strong></div>
+                                                    <div class="col-12 col-md-10">
+                                                        <select id="select1" class="form-select form-select-sm bg-secondary text-dark bg-opacity-10" aria-label=".form-select-sm example">
+                                                            <option selected>Selecciona la opción</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 text-star mb-3" id="Piso"></div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="col-12 mb-3">
+                                                <label for="descripcion" class="form-label"><strong>Descripción: </strong></label>
+                                                <textarea class="form-control bg-secondary p-2 text-dark bg-opacity-10" name="descripcion" rows="8" id="Descripcion"></textarea>
+                                            </div>
+                                            <div class="col-12 mb-1 mt-3 text-end">
+                                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#Guardar">Enviar</button>
+                                            </div>
+                                            <div class="modal fade" id="Guardar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Solicitud</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Desea enviar esta solicitud?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                            <button type="button" class="btn btn-primary" id="Envi_Solit" data-bs-dismiss="modal">Confirmar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-administrar" role="tabpanel" aria-labelledby="v-pills-administrar-tab" tabindex="0">
+                        <div class="container d-flex align-items-center justify-content-center">
+                            <div class="row col-12 shadow p-3 mb-5 bg-body rounded">
+                                <div class="col-12 text-center mt-3 mb-3">
+                                    <h1 class="h4 text-primary">Administrar</h1>
+                                </div>
+                                <div class="mb-3">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <button class="nav-link active" id="nav-todos-tab" data-bs-toggle="tab" data-bs-target="#nav-todos" type="button" role="tab" aria-controls="nav-todos" aria-selected="true">Todos</button>
+                                            <button class="nav-link" id="nav-pendiente-tab" data-bs-toggle="tab" data-bs-target="#nav-pendiente" type="button" role="tab" aria-controls="nav-pendiente" aria-selected="false" disabled>Pendiente</button>
+                                            <button class="nav-link" id="nav-atendido-tab" data-bs-toggle="tab" data-bs-target="#nav-atendido" type="button" role="tab" aria-controls="nav-atendido" aria-selected="false" disabled>Atendido</button>
+                                            <button class="nav-link" id="nav-cancelado-tab" data-bs-toggle="tab" data-bs-target="#nav-cancelado" type="button" role="tab" aria-controls="nav-cancelado" aria-selected="false" disabled>Cancelados</button>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-todos" role="tabpanel" aria-labelledby="nav-todos-tab" tabindex="0">
+                                            <div class="col-12 mb-3 mt-3">
+                                                <p class="lead fs-6">Desde aqui puedes "Ver", "Cancelar" o "Descargar" las solicitudes.</p>
+                                            </div>
+                                            <div class="table-responsive mt-3 py-3 px-2">
+                                                <table id="exampleTabla" class="table align-middle table-sm table-striped table-hover text-center table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Folio</th>
+                                                            <th scope="col">Usuario</th>
+                                                            <th scope="col">Fecha</th>
+                                                            <th scope="col">Área</th>
+                                                            <th scope="col">Piso</th>
+                                                            <th scope="col">Descripción</th>
+                                                            <th scope="col">Estatus</th>
+                                                            <th scope="col">Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="TablaAdmi">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table> 
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-evenly">
+                                            <div>
+                                                <img src="./assets/iconos/bxs-check-square.svg" alt="Atendido"> (Atendido)</img>
+                                            </div>
+                                            <div>
+                                                <img src="./assets/iconos/bxs-no-entry.svg" alt="Cancelar"> (Cancelar)</img>
+                                            </div>
+                                            <div>
+                                                <img src="./assets/iconos/bxs-file-doc.svg" alt="Descargar Archivo"> (Descargar Archivo)</img>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-pendiente" role="tabpanel" aria-labelledby="nav-pendiente-tab" tabindex="0">
+                                            <div class="col-12 mb-3 mt-3">
+                                                <p class="lead fs-6">Desde aqui puedes "Ver", "Cancelar" o "Descargar" las solicitudes.</p>
+                                            </div>
+                                            <div class="table-responsive" id="TablaAdmin">
+                                                <table class="table align-middle table-sm table-striped table-hover text-center table-bordered border-secondary">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Folio</th>
+                                                            <th scope="col">Usuario</th>
+                                                            <th scope="col">Fecha</th>
+                                                            <th scope="col">Área</th>
+                                                            <th scope="col">Piso</th>
+                                                            <th scope="col">Descripción</th>
+                                                            <th scope="col">Estatus</th>
+                                                            <th scope="col">Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="TablaAdmi">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-atendido" role="tabpanel" aria-labelledby="nav-atendido-tab" tabindex="0">
+                                            <div class="col-12 mb-3 mt-3">
+                                                <p class="lead fs-6">Desde aqui puedes "Ver" y "Descargar" las solicitudes atendidas.</p>
+                                            </div>
+                                            <div class="table-responsive" id="TablaAdmin">
+                                                <table class="table align-middle table-sm table-striped table-hover text-center table-bordered border-secondary">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Folio</th>
+                                                            <th scope="col">Usuario</th>
+                                                            <th scope="col">Fecha</th>
+                                                            <th scope="col">Área</th>
+                                                            <th scope="col">Piso</th>
+                                                            <th scope="col">Descripción</th>
+                                                            <th scope="col">Estatus</th>
+                                                            <th scope="col">Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="TablaAdmi">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-cancelado" role="tabpanel" aria-labelledby="nav-cancelado-tab" tabindex="0">
+                                            <div class="col-12 mb-3 mt-3">
+                                                <p class="lead fs-6">Desde aqui puedes "Ver" las solicitudes canceladas.</p>
+                                            </div>
+                                            <div class="table-responsive" id="TablaAdmin">
+                                                <table class="table table-striped-columns">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Folio</th>
+                                                            <th scope="col">Usuario</th>
+                                                            <th scope="col">Fecha</th>
+                                                            <th scope="col">Área</th>
+                                                            <th scope="col">Piso</th>
+                                                            <th scope="col">Descripción</th>
+                                                            <th scope="col">Estatus</th>
+                                                            <th scope="col">Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="TablaAdmi">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="container page-footer font-small unique-color-dark pt-4 border-top">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2022 Copyright:
+            <a href="#"> Simulador</a>
+        </div>
+    </footer>
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</body>
+</html>
